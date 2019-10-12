@@ -1,0 +1,43 @@
+oc new-app redhat-openjdk18-openshift~https://github.com/digvijay17july/imageFactory.git  --context-dir=undertow-servlet
+
+
+oc new-app redhat-openjdk18-openshift:1.3~https://github.com/digvijay17july/imageFactory.git --name=imageFactory 
+
+
+Steps for HA labs:-
+
+Bastin server:-
+
+Get hosts -: mv /var/preserve/hosts /etc/ansible/
+
+Verify- sudo ansible-playbook -i hosts /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml 
+
+Deploy— sudo ansible-playbook -i hosts /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml 
+
+Restart- sudo ansible-playbook -i hosts /usr/share/ansible/openshift-ansible/playbooks/openshift-master/restart.yml 
+
+Uninstall -sudo ansible-playbook -i hosts  /usr/share/ansible/openshift-ansible/playbooks/adhoc/uninstall.yml 
+
+Master 1:-
+
+Create user - sudo htpasswd -b /etc/origin/master/htpasswd admin admin
+
+Provide role- oc adm policy add-cluster-role-to-user cluster-admin admin
+ oc adm policy add-role-to-user cluster-admin admin
+
+Restart — /usr/local/bin/master-restart api
+
+		/usr/local/bin/master-restart controllers
+
+
+Default user -
+User1
+R3dh4t1!
+
+
+
+sudo htpasswd -b /etc/origin/master/htpasswd dev dev
+
+oc adm policy add-cluster-role-to-user self-provisioner dev
+oc adm policy add-role-to-user self-provisioner dev
+
