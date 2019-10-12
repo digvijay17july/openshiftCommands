@@ -1,0 +1,18 @@
+ git clone https://github.com/siamaksade/openshift-cd-demo.git
+
+git reset --hard e398e385c5523a7a4bb431ddd0aee791f8f225b8
+
+cd openshift-cd-demo/
+
+./scripts/provision.sh deploy  --project-suffix test --ephemeral true
+
+oc set triggers dc/jenkins --remove --from-image jenkins:2 -n cicd-test
+
+oc set image dc/jenkins  jenkins=registry.redhat.io/openshift3/jenkins-2-rhel7@sha256:386f7a43af90a79eabe521be05fc6c2fad873c14b6dd53bbac38dc5418837f39 -n cicd-test
+
+oc start-build tasks-pipeline
+
+./scripts/provision.sh delete --project-suffix test
+
+
+oc autoscale dc/tasks --min 1 --max 5 --cpu-percent=80
