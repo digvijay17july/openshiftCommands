@@ -1,1 +1,33 @@
 
+oc  new-project dev-[PROJECT]   --display-name="Tasks - Dev"
+oc  new-project stage-[PROJECT]  —display-name="Tasks - Stage"
+oc  new-project cicd-[PROJECT]   --display-name="CI/CD"
+
+oc  policy add-role-to-group edit system:serviceaccounts:cicd-[PROJECT]  -n dev-[PROJECT] 
+  oc  policy add-role-to-group edit system:serviceaccounts:cicd-[PROJECT]  -n stage-[PROJECT] 
+
+oc  adm pod-network join-projects --to=cicd-[PROJECT]  dev-[PROJECT]  stage-[PROJECT] 
+
+ oc new-app jenkins-ephemeral -n cicd-[PROJECT] 
+
+
+local template=https://github.com/siamaksade/openshift-cd-demo/blob/e398e385c5523a7a4bb431ddd0aee791f8f225b8/cicd-template.yaml
+  echo "Using template $template"
+  oc  new-app -f  https://github.com/siamaksade/openshift-cd-demo/blob/e398e385c5523a7a4bb431ddd0aee791f8f225b8/cicd-template.yaml -p DEV_PROJECT=dev-[PROJECT]  -p STAGE_PROJECT=stage-[PROJECT]  -p
+  -n cicd-[PROJECT] 
+
+
+
+  oc  new-app -f template.yaml -p DEV_PROJECT=dev-[PROJECT]  -p STAGE_PROJECT=stage-[PROJECT]  -n cicd-[PROJECT] 
+
+
+oc set triggers dc/jenkins --remove --from-image jenkins:2 -n cicd-[PROJECT] 
+
+oc set image dc/jenkins  jenkins=registry.redhat.io/openshift3/jenkins-2-rhel7@sha256:386f7a43af90a79eabe521be05fc6c2fad873c14b6dd53bbac38dc5418837f39 -n cicd-[PROJECT] 
+
+
+oc get dc jenkins -o yam -n cicd-arol |grep image
+        image: registry.redhat.io/openshift3/jenkins-2-rhel7@sha256:386f7a43af90a79eabe521be05fc6c2fad873c14b6dd53bbac38dc5418837f39
+
+
+
