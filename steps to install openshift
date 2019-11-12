@@ -41,3 +41,8 @@ sudo htpasswd -b /etc/origin/master/htpasswd dev dev
 oc adm policy add-cluster-role-to-user self-provisioner dev
 oc adm policy add-role-to-user self-provisioner dev
 
+
+Ansible command to run on each master parallaly
+
+sudo ansible -i hosts  masters -a 'htpasswd -b /etc/origin/master/htpasswd dev dev'
+
