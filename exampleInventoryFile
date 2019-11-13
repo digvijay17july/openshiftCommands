@@ -96,7 +96,6 @@ openshift_enable_unsupported_configurations=true
 
 #oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 oreg_url=registry.redhat.io/openshift3/ose-${component}:${version}
-oreg_auth_user=11009103|digvijay
-oreg_auth_password=eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxMmNmMGFjNWI5MzU0ZjU1OTgyZTA3M2VkNzk3NmVhNSJ9.OCWY7-GrPJ3cFuyy2NeLOf2Mx5MDU0KWVZDojMxbLA1sD7lcW652bm4adyfOgBP9_vPcBeenKL0xhaV37JM3uffjjZXJzT_Pn0Sym3W6crwnR38iLKzuTj818ZoW_JHFo1hQYgE4CLBY81THAipkGfeCa5eN6wiZSQojAwhSDT3o81vCA7lCkYOk2AnqClqYqu92GyMcmzeD0DJbnrAGVAKkfZQVhR3tFRcYGz_vCKA-W6wjurHdtcOBjNUmXjp_9qCF-o2cyKVMaPcZG36em4T-iASFrGry80ohCVbLXd9rTrG9qotJ3ZDbmvEDuMMymAdEMtH0QZHHvq9nGLDFc6N2Y_BP-n78G-0bNRNFu7VAtD2aGDDtfyQcyIUAYB4DI-ItWW3E1kVxPU2y5KLrNzc4GIPZCkTtnHB0PAkEdURC1zI5vnHxrPXL25bfn-KA0d6qhtu8_nWzNy8U4n1HoM5QdHR48mxx3jhECPXN_MqnhvhyXnsXVTD88sP7jj3S6STn91Cdso2_XpmtFsvwqS02d1sLmBzZBxUcdXG3xFvucKSCC4IKDeOz0KFg-MGB2oYjaYRMtJhUeCtVRwJbOg70CLMZg1fD4ZNYFZe6GNqqHkt6q0cnaTtFMUe5ObKCu4BOYAEy9A9JBYLSoWT_spG97KbAEe9U6arqs44_Nm4
-
+oreg_auth_user=<username>
+oreg_auth_password=<password>
                                                                                                                                                                                                                             1,1           Top
