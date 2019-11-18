@@ -9,8 +9,30 @@ sudo subscription-manager register
 sudo subscription-manager attach --auto
 
 
+# command to get pool id
 
+subscription-manager list --available >  poolid.txt
 
-#COMMAND  TO ADD all repos
+--search pool id in file and attach . using command
 
-sudo subscription-manager repos --enable "*"
+#Command to attach pool id 
+
+subscription-manager attach --pool <pool-id>
+
+#command to enable 3 scale repo 
+
+sudo subscription-manager repos --enable=rhel-7-server-3scale-amp-2.6-rpms
+
+# command to install template
+sudo yum install 3scale-amp-template
+
+#command to create docker registry secret
+
+oc create secret docker-registry threescale-registry-auth \
+  --docker-server=registry.redhat.io \
+  --docker-username="your-registry-service-account-username" \
+  --docker-password="your-registry-service-account-password"
+  
+  #command to create new 3 scale app
+  
+  oc new-app --file /opt/amp/templates/amp.yml --param WILDCARD_DOMAIN=<domain>
