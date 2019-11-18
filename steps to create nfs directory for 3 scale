@@ -1,0 +1,37 @@
+# Command to create directory
+
+sudo mkdir /srv/nfs ; sudo mkdir /srv/nfs/system-storage ;sudo  mkdir /srv/nfs/mysql-storage ; sudo mkdir /srv/nfs/system-redis-storage ;sudo  mkdir /srv/nfs/backend-redis-storage
+
+
+# Command to start service 
+
+sudo systemctl start nfs
+
+sudo systemctl start rpcbind
+
+
+# Command to set Permissions
+
+sudo chown -R nfsnobody:nfsnobody /srv/nfs
+
+sudo chmod -R 777 /srv/nfs
+
+# Command to add path to exports
+
+  sudo echo '/srv/nfs/system-storage *(rw,sync,no_root_squash) /srv/nfs/mysql-storage *(rw,sync,no_root_squash) /srv/nfs/system-redis-storage *(rw,sync,no_root_squash) /srv/nfs/backend-redis-storage *(rw,sync,no_root_squash)' >> /etc/exports
+
+
+#command to sync 
+
+sudo exportfs -a
+sudo setsebool -P virt_use_nfs 1
+
+
+sudo iptables -I INPUT 1 -p tcp --dport 2049 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 20048 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 111 -j ACCEPT
+sudo service iptables save
+
+# command to check added dir
+
+showmount -e 127.0.0.1
