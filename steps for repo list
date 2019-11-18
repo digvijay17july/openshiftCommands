@@ -1,0 +1,16 @@
+#command to register
+
+
+sudo subscription-manager remove --all
+sudo subscription-manager unregister
+sudo subscription-manager clean
+
+sudo subscription-manager register
+sudo subscription-manager attach --auto
+
+
+
+
+#COMMAND  TO ADD all repos
+
+sudo subscription-manager repos --enable "*"
