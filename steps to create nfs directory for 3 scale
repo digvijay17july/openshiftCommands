@@ -18,7 +18,10 @@ sudo chmod -R 777 /srv/nfs
 
 # Command to add path to exports
 
-  sudo echo '/srv/nfs/system-storage *(rw,sync,no_root_squash) /srv/nfs/mysql-storage *(rw,sync,no_root_squash) /srv/nfs/system-redis-storage *(rw,sync,no_root_squash) /srv/nfs/backend-redis-storage *(rw,sync,no_root_squash)' >> /etc/exports
+  sudo echo '/srv/nfs/system-storage *(rw,sync,no_root_squash)' >> /etc/exports
+  sudo echo '/srv/nfs/mysql-storage *(rw,sync,no_root_squash)' >> /etc/exports
+  sudo echo '/srv/nfs/system-redis-storage *(rw,sync,no_root_squash)' >> /etc/exports
+  sudo echo '/srv/nfs/backend-redis-storage *(rw,sync,no_root_squash)' >> /etc/exports
 
 
 #command to sync 
